@@ -1,0 +1,7 @@
+target/
+.settings/
+.DS_Store
+Thumbs.db
+.idea/
+*.iml
+tmp
