@@ -3,7 +3,7 @@ Examples and small test cases for usage of [display4j-core](https://github.com/d
 ## Getting Started 
 Please checkout and install [display4j-core](https://github.com/display4j/display4j-core) first.
 ```bash
-git clone display4j-core
+git clone https://github.com/display4j/display4j-core
 git clone https://github.com/display4j/display4j-examples
 cd display4j-core
 mvn install

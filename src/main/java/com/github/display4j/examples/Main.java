@@ -5,9 +5,9 @@ import com.github.display4j.core.SSD1327;
 import com.github.display4j.core.SSD1327AwtMock;
 import com.github.display4j.core.SSDisplay;
 import com.github.display4j.core.conn.DisplayConnection;
-import com.github.display4j.core.conn.DisplayConnectionI2C;
+import com.github.display4j.core.conn.pi4j.DisplayConnectionI2C;
 import com.github.display4j.core.conn.DisplayConnectionMock;
-import com.github.display4j.core.conn.DisplayConnectionSPI;
+import com.github.display4j.core.conn.pi4j.DisplayConnectionSPI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,6 +32,13 @@ public class Main {
         if (args.length > 2) {
             connectionType = args[2];
         }
+
+
+        if (displayType.endsWith("AwtMock")) {
+            logger.info("default Display-Mock to Mock-Connection");
+            connectionType = "Mock";
+        }
+        logger.info("selected routine: {},display type: {}, connection: {}", routine, displayType, connectionType);
 
 
         // setup connection
