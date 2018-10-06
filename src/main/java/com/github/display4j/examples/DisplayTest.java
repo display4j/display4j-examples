@@ -133,9 +133,18 @@ public class DisplayTest {
         // rect around display area
         graphics.drawRect(0,0,width-1, height-1);
 
-        Font font = new Font(Font.MONOSPACED, Font.BOLD, 25);
-        Font fontMedium = new Font(Font.DIALOG, Font.BOLD, 16);
-        Font fontSmall = new Font(Font.SANS_SERIF, Font.PLAIN, 12);
+        int fontSize=25;
+        int fontSizeMed=16;
+        int fontSizeSmall=12;
+        if (display.getWidth() < 128) {
+            fontSize = 20;
+            fontSizeMed=12;
+            fontSizeSmall=10;
+        }
+
+        Font font = new Font(Font.MONOSPACED, Font.BOLD, fontSize);
+        Font fontMedium = new Font(Font.DIALOG, Font.BOLD, fontSizeMed);
+        Font fontSmall = new Font(Font.SANS_SERIF, Font.PLAIN, fontSizeSmall);
 
         graphics.setFont(fontSmall);
         graphics.setColor(Color.white);

@@ -1,9 +1,7 @@
 package com.github.display4j.examples;
 
+import com.github.display4j.core.*;
 import com.github.display4j.core.Graphics;
-import com.github.display4j.core.SSD1306;
-import com.github.display4j.core.SSD1327;
-import com.github.display4j.core.SSDisplay;
 import com.github.display4j.core.conn.DisplayConnection;
 import com.github.display4j.core.conn.pi4j.DisplayConnectionI2C;
 import com.github.display4j.core.conn.pi4j.DisplayConnectionSPI;
@@ -40,7 +38,10 @@ public class ExampleFromReadme {
         display = new SSD1306(dspConn, 128, 64);
 
         // or SSD1327
-        display = new SSD1327(dspConn);
+        display = new SSD1327(dspConn, 128, 128);
+
+        // or SSD1327 Mocking implementation
+        display = new SSD1327AwtMock(128, 128);
 
 
         // call startup
@@ -63,7 +64,7 @@ public class ExampleFromReadme {
 
 
         // SSDisplay display = new SSD1306(dspConn, 128, 64);
-        SSDisplay display = new SSD1327(new DisplayConnectionI2C());
+        SSDisplay display = new SSD1327(new DisplayConnectionI2C(), 128, 128);
         display.startup(false);
 
         // make use of Java AWT Graphics2D
