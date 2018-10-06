@@ -40,7 +40,9 @@ or run example on your dev computer (no PI4J required) with the mocking implemen
 ```
 
 
-![example of SSD1327 Awt Mock](https://raw.githubusercontent.com/display4j/display4j-docs/master/img/ssd1327_awt_mock_128_128.png)
+| Device    | Mock |
+|-----------|------|
+|![example of SSD1327](https://raw.githubusercontent.com/display4j/display4j-docs/master/img/IMG_20181005_195320_cut.jpg)|![example of SSD1327 Awt Mock](https://raw.githubusercontent.com/display4j/display4j-docs/master/img/ssd1327_awt_mock_128_128.png)|
 
 
 ### Java
