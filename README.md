@@ -39,6 +39,10 @@ or run example on your dev computer (no PI4J required) with the mocking implemen
 # ./run.sh dspTest SSD1327AwtMock Mock
 ```
 
+
+![example of SSD1327 Awt Mock](https://raw.githubusercontent.com/display4j/display4j-docs/master/img/ssd1327_awt_mock_128_128.png)
+
+
 ### Java
 Have a look at the code ... here you find the implemented versions of the README.MD 
 of [display4j-core](https://github.com/display4j/display4j-core)  
