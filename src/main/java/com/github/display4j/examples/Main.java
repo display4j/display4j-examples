@@ -80,6 +80,9 @@ public class Main {
         if ("dspTest".equals(routine)) {
             DisplayTest dspTest = new DisplayTest(display);
             dspTest.run();
+        } else if ("dspTestLegacy".equals(routine)) {
+            DisplayTestLegacy dspTest = new DisplayTestLegacy(display);
+            dspTest.run();;
         } else if ("exampleFromReadme".equals(routine)) {
             ExampleFromReadme.main();
         } else if ("dspTestStartStop".equals(routine)) {
@@ -97,7 +100,7 @@ public class Main {
         System.out.println("\trun.{sh|bat} RoutineName DisplayType [ConnectionType]");
         System.out.println("");
         System.out.println("example:        run.sh dspTest SSD1327");
-        System.out.println("Routine:        dspTest | exampleFromReadme | dspTestStartStop");
+        System.out.println("Routine:        dspTest | dspTestLegacy | exampleFromReadme | dspTestStartStop");
         System.out.println("DisplayType:    \n" +
                 "\tSSD1306_128_64 | \n" +
                 "\tSSD1327_96_96 | SSD1327_128_64 | SSD1327_128_128 | \n" +

@@ -43,11 +43,8 @@ public class DisplayTest {
 
     public void run() throws Exception {
         setUp();
-        testPatternFilling();
-        testRowFilling();
-        testDiagonalLines();
+        testFonts();
         testDrawing();
-        testInversionFlipping();
         //shutdown();
     }
 
@@ -68,66 +65,46 @@ public class DisplayTest {
         logger.info("<< shutdown");
     }
 
-    public void testPatternFilling() throws IOException, InterruptedException {
-        logger.info("testRowFilling");
-        for (byte i=0; i<16; i += 2) {
-            byte b = (byte) (i << 4);
-            b |= i;
-            logger.info("pattern: {}", HexConversionHelper.byteToHex(b));
-            display.fillBufferWithPattern(b);
-            display.display();
 
-            //Thread.sleep(50);
+    public void testFonts() throws IOException, InterruptedException {
+        logger.debug(">> testFonts");
+
+        Graphics2D graphics = display.getGraphics2D();
+
+        for (int fontSize=6; fontSize < display.getHeight(); fontSize+=2) {
+            logger.info("fontSize: {}", fontSize);
+            // clear contents
+            graphics.setColor(Color.BLACK);
+            graphics.fillRect(0,0,width-1, height-1);
+
+            graphics.setColor(Color.darkGray);
+            // rect around display area
+            graphics.drawRect(0,0,width-1, height-1);
+
+
+            Font font = new Font(Font.SERIF, Font.ITALIC, fontSize);
+
+            graphics.setFont(font);
+            graphics.setColor(Color.white);
+            graphics.drawString("Hello!", 5, display.getHeight()-5);
+
+
+
+            display.rasterGraphics2DImage(true);
         }
-        display.clearBuffer();
+
+        logger.debug("<< testFonts");
     }
 
-
-    public void testDiagonalLines() throws InterruptedException, IOException {
-        logger.info("testDiagonalLines");
-        for (int r=0; r<height && r<width; r++) {
-            display.setPixel(r, r, true);
-            display.setPixel(width/2-1, r, true);
-            display.setPixel(width/2, r, true);
-            display.setPixel(width/2+1, r, true);
-
-            display.setPixel(r, height/2-1, true);
-            display.setPixel(r, height/2, true);
-            display.setPixel(r, height/2+1, true);
-            //display.setPixel(display.getWidth() - r -1, r, true);
-        }
-        int[] bufferAsInt = new int[display.getBuffer().length];
-        int i = 0;
-        for (byte b : display.getBuffer()) {
-            bufferAsInt[i] = b;
-            i++;
-        }
-        display.display();
-        Thread.sleep(2000);
-        display.clearBuffer();
-    }
-
-    public void testRowFilling() throws InterruptedException, IOException {
-        logger.info("testRowFilling");
-        int step = height / 16;
-        if (step < 4) step = 4;
-        logger.info("draw every {} line", step);
-
-        for (int fillRow=0; fillRow<display.getHeight(); fillRow += 16) {
-            logger.info("fill col: {}", fillRow);
-
-            for (int c=0; c<display.getWidth(); c++) {
-                display.setPixel(c, fillRow, true);
-            }
-            display.display();
-        }
-        //display.clearBuffer();
-    }
 
     public void testDrawing() throws IOException, InterruptedException {
         logger.debug(">> testDrawing");
 
         Graphics2D graphics = display.getGraphics2D();
+
+        // clear contents
+        graphics.setColor(Color.BLACK);
+        graphics.fillRect(0,0,width-1, height-1);
 
         graphics.setColor(Color.darkGray);
         // rect around display area
