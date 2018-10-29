@@ -77,7 +77,7 @@ public class DisplayTest {
             graphics.setColor(Color.BLACK);
             graphics.fillRect(0,0,width-1, height-1);
 
-            graphics.setColor(Color.darkGray);
+            graphics.setColor(Color.lightGray);
             // rect around display area
             graphics.drawRect(0,0,width-1, height-1);
 
@@ -106,7 +106,7 @@ public class DisplayTest {
         graphics.setColor(Color.BLACK);
         graphics.fillRect(0,0,width-1, height-1);
 
-        graphics.setColor(Color.darkGray);
+        graphics.setColor(Color.lightGray);
         // rect around display area
         graphics.drawRect(0,0,width-1, height-1);
 
