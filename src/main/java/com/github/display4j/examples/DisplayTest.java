@@ -118,6 +118,11 @@ public class DisplayTest {
             fontSizeMed=12;
             fontSizeSmall=10;
         }
+        if (display.getHeight() < 64) {
+            fontSize = 20;
+            fontSizeMed = 12;
+            fontSizeSmall = 9;
+        }
 
         Font font = new Font(Font.MONOSPACED, Font.BOLD, fontSize);
         Font fontMedium = new Font(Font.DIALOG, Font.BOLD, fontSizeMed);
@@ -125,10 +130,13 @@ public class DisplayTest {
 
         graphics.setFont(fontSmall);
         graphics.setColor(Color.white);
-        graphics.drawString(display.getClass().getSimpleName(), 5, 12);
+
+        graphics.drawString(display.getClass().getSimpleName(), 2, 1 + fontSizeSmall);
 
         // line above time
-        graphics.drawLine(1, display.getHeight() - 25, display.getWidth() - 2, display.getHeight() - 25);
+        if (display.getHeight() > 32) {
+            graphics.drawLine(1, display.getHeight() - 25, display.getWidth() - 2, display.getHeight() - 25);
+        }
 
         drawTime(graphics, font);
 
@@ -189,12 +197,12 @@ public class DisplayTest {
 
         String msg = "" + duration1 + " ms per frame";
         logger.info(msg);
-        graphics.setFont(fontSmall);
-        graphics.setColor(Color.darkGray);
-        graphics.drawString(msg, 5, 30);
-        display.rasterGraphics2DImage(true);
-
-
+        if (display.getHeight() > 64) {
+            graphics.setFont(fontSmall);
+            graphics.setColor(Color.darkGray);
+            graphics.drawString(msg, 5, 30);
+            display.rasterGraphics2DImage(true);
+        }
 
         boolean stayAlive = true;
         while (stayAlive) {

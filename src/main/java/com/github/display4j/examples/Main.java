@@ -1,9 +1,6 @@
 package com.github.display4j.examples;
 
-import com.github.display4j.core.SSD1306;
-import com.github.display4j.core.SSD1327;
-import com.github.display4j.core.SSD1327AwtMock;
-import com.github.display4j.core.SSDisplay;
+import com.github.display4j.core.*;
 import com.github.display4j.core.conn.DisplayConnection;
 import com.github.display4j.core.conn.pi4j.DisplayConnectionI2C;
 import com.github.display4j.core.conn.DisplayConnectionMock;
@@ -51,6 +48,7 @@ public class Main {
             dspConn = new DisplayConnectionMock();
         } else {
             System.err.println("unknown connection type: " + connectionType);
+            showUsage();
             System.exit(1);
         }
 
@@ -58,7 +56,13 @@ public class Main {
         SSDisplay display = null;
         if ("SSD1306_128_64".equals(displayType)) {
             display = new SSD1306(dspConn, 128, 64);
-        } else if ("SSD1327_96, 96".equals(displayType)) {
+        } else if ("SSD1306_128_32".equals(displayType)) {
+            display = new SSD1306( dspConn, 128, 32);
+        } else if ("SSD1306AwtMock_128_32".equals(displayType)) {
+            display = new SSD1306AwtMock( 128, 32);
+        } else if ("SSD1306AwtMock_128_64".equals(displayType)) {
+            display = new SSD1306AwtMock( 128, 64);
+        } else if ("SSD1327_96_96".equals(displayType)) {
             display = new SSD1327(dspConn, 96,96);
         } else if ("SSD1327_128_64".equals(displayType)) {
             display = new SSD1327(dspConn, 128,64);
@@ -72,6 +76,7 @@ public class Main {
             display = new SSD1327AwtMock(128, 128);
         } else {
             System.err.println("unknown display type: " + displayType);
+            showUsage();
             System.exit(1);
         }
 
@@ -90,6 +95,7 @@ public class Main {
             dspTest.run();
         } else {
             System.err.println("unknown routine type: " + routine);
+            showUsage();
             System.exit(1);
         }
     }
@@ -102,7 +108,7 @@ public class Main {
         System.out.println("example:        run.sh dspTest SSD1327");
         System.out.println("Routine:        dspTest | dspTestLegacy | exampleFromReadme | dspTestStartStop");
         System.out.println("DisplayType:    \n" +
-                "\tSSD1306_128_64 | \n" +
+                "\tSSD1306_128_32 | SSD1306_128_64 |\n" +
                 "\tSSD1327_96_96 | SSD1327_128_64 | SSD1327_128_128 | \n" +
                 "\tSSD1327AwtMock_96_96 | SSD1327AwtMock_128_64 | SSD1327AwtMock_128_128");
         System.out.println("ConnectionType: I2C | SPI | Mock - default is: " + DEFAULT_CONNECTION_TYPE);
